@@ -1,0 +1,31 @@
+---
+version: "3.9"
+services:
+  axelard-node:
+    container_name: axelar-node
+    build: ./build/axelar/
+    image: axelar-node:v1.1.0_main
+    environment:
+      - CHAINID=axelar-dojo-1
+      - MONIKER=CoinMetrika
+      - KEYRING_PASSWORD=<password>
+      - LOGLEVEL=debug    
+    ports:
+    - "26660:26660"
+    - "50051:50051"
+    - "9090:9090"
+    - "9091:9091"
+    - "26656:26656"
+    - "26657:26657"
+    - "1317:1317"
+    volumes:
+      - ./conf_root:/root
+      - ./logs:/var/log/axelard
+      #- ./conf_alexar:/root/.axelar
+      #- ./conf_tofnd:/root/.tofnd
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: "3"
+    #      memory: 4gb
+    #restart: unless-stopped
