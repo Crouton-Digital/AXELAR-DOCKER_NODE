@@ -5,7 +5,7 @@ https://docs.axelar.dev/validator/setup/manual
 1. Install Docker Engine and docker-compose
 2. Clone repository 
 3. cd directory project
-4. edit docker-compose.yml, setup MONIKER and passowrd 
+4. edit docker-compose.yml, setup MONIKER and password 
 5. docker-compose build 
 6. after build is done run: docker-compose up -d  and wait when sync is done
 7. read logs: docker-compose logs -f 
