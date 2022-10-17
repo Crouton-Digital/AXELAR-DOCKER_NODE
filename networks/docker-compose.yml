@@ -1,0 +1,63 @@
+---
+version: "3.9"
+services:
+  avalanche-node:
+    container_name: avalanche-node
+    build: ./build/avalanche/
+    restart: always
+#    environment:
+#      - CHAINID=axelar-testnet-lisbon-3
+    ports:
+      - "9650:9650"
+    volumes:
+      - ./volumes/avalanche_conf_root:/root
+    networks: 
+      - axelar
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: "3"
+    #      memory: 4gb
+    #restart: unless-stopped
+  moonbeam-node:
+    container_name: moonbeam-node
+    build: ./build/moonbeam/
+    restart: always
+    environment:
+      - NODENAME="CoinMetrika"
+    ports:
+      - "9933:9933"
+      - "30333:30333"
+      - "30334:30334"
+    volumes:
+      - ./volumes/moonbeam_conf_root:/root
+    networks: 
+      - axelar
+  fantom-node:
+    container_name: fantom-node
+    build: ./build/fantom/
+    restart: always
+    environment:
+      - IDENTITY=CroutonDigital
+    ports:
+      - "18545:18545"
+    volumes:
+      - ./volumes/fanton_conf_root:/root
+    networks: 
+      - axelar
+#  bsc-node:
+#    container_name: bsc-node
+#    build: ./build/bsc/
+#    restart: always
+#    environment:
+#      - IDENTITY=axelar-testnet-lisbon-3
+#    ports:
+#      - "8545:8545"
+#    volumes:
+#      - ./volumes/bsc_conf_root:/root
+#    networks: 
+#      - axelar
+networks:
+    axelar: 
+        name: alexar-node_default
+        external: true
